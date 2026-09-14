@@ -1,50 +1,73 @@
-import { ArrowRight, Mail } from 'lucide-react'
-import GithubIcon from './icons/GithubIcon'
+import { useState } from 'react'
+import SocialLink from './SocialLink'
+import { heroSocialOrder } from '../data/socials'
+import portraitImg from '../assets/portrait.png'
+
+const navLinks = [
+  { href: '#about', label: 'About me' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#projects', label: 'Portfolio' },
+]
 
 export default function Hero() {
-  return (
-    <section id="about" className="mx-auto max-w-5xl px-6 pb-20 pt-16 sm:pt-24">
-      <p className="mb-4 text-sm font-medium uppercase tracking-widest text-violet-600 dark:text-violet-400">
-        Hello, I'm
-      </p>
-      <h1 className="text-4xl font-bold tracking-tight text-zinc-900 sm:text-6xl dark:text-white">
-        Ramiz Ortiqov
-      </h1>
-      <p className="mt-4 text-xl font-medium text-zinc-600 sm:text-2xl dark:text-zinc-400">
-        Software Engineer — Web, Mobile &amp; Telegram Bot Developer
-      </p>
-      <p className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-        I started coding in school and went through Ilmhona's front-end course, where I picked up
-        HTML, CSS, JavaScript, React, Bootstrap, WordPress and Git. I'm now a Software Engineering
-        student at Moscow Polytechnic University, where I've expanded into databases, C++, Python,
-        Android development, and full web deployment. Today I build landing pages, e-commerce
-        sites, multi-page web apps, Telegram bots &amp; mini apps, and mobile apps.
-      </p>
+  const [imgFailed, setImgFailed] = useState(false)
 
-      <div className="mt-8 flex flex-wrap items-center gap-4">
-        <a
-          href="#projects"
-          className="inline-flex items-center gap-2 rounded-full bg-violet-600 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-violet-700"
-        >
-          View Projects
-          <ArrowRight size={16} />
-        </a>
-        <a
-          href="#contact"
-          className="inline-flex items-center gap-2 rounded-full border border-zinc-300 px-5 py-2.5 text-sm font-semibold text-zinc-800 transition-colors hover:border-violet-500 hover:text-violet-600 dark:border-zinc-700 dark:text-zinc-200 dark:hover:border-violet-400 dark:hover:text-violet-400"
-        >
-          <Mail size={16} />
-          Contact Me
-        </a>
-        <a
-          href="https://github.com/ramizortiqov"
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-2 rounded-full px-3 py-2.5 text-sm font-semibold text-zinc-600 transition-colors hover:text-violet-600 dark:text-zinc-400 dark:hover:text-violet-400"
-        >
-          <GithubIcon size={18} />
-          GitHub
-        </a>
+  return (
+    <section className="grid min-h-[640px] grid-cols-1 bg-panel sm:grid-cols-2">
+      <div className="flex min-w-0 flex-col justify-between px-6 pb-14 pt-8 sm:px-10 sm:pb-14 sm:pr-16 sm:pt-8">
+        <div className="flex items-center gap-3">
+          <div className="grid h-11 w-11 -skew-x-[8deg] place-items-center border-[2.5px] border-ink text-[15px] font-extrabold tracking-[-0.5px]">
+            RO
+          </div>
+        </div>
+
+        <div className="pt-12">
+          <p className="m-0 mb-2.5 text-[22px] font-bold text-ink">Hi, I am</p>
+          <h1 className="text-wrap-balance m-0 text-[clamp(2.5rem,6vw,4.25rem)] font-extrabold leading-[1.02] tracking-[-1.5px]">
+            Ramiz Ortiqov
+          </h1>
+          <p className="mt-2.5 text-[15px] font-semibold tracking-[0.2px] text-[#6b6b6b]">
+            Software Engineer — Web, Mobile &amp; Telegram Bot Developer
+          </p>
+          <div className="mt-11 flex flex-wrap gap-3">
+            {heroSocialOrder.map((id) => (
+              <SocialLink key={id} id={id} size={42} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="relative flex min-w-0 flex-col bg-void [clip-path:polygon(0_0,100%_0,100%_100%,0_100%)] sm:-ml-[84px] sm:[clip-path:polygon(84px_0,100%_0,100%_100%,0_100%)]">
+        <nav className="relative z-[2] flex flex-wrap items-center justify-end gap-[18px] px-5 pt-8 sm:pl-24">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-[13px] font-semibold text-paper no-underline transition-colors hover:text-[#9a9a9a]"
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href="#contact"
+            className="whitespace-nowrap rounded-[22px] bg-paper px-5 py-[11px] text-[10px] font-bold tracking-[1.4px] text-ink no-underline transition-colors hover:bg-[#c9c9c9]"
+          >
+            CONTACT ME
+          </a>
+        </nav>
+
+        <div className="flex flex-1 items-end justify-center pt-6 sm:pl-24">
+          <div className="relative h-[400px] w-full max-w-[540px] overflow-hidden sm:h-[620px]">
+            {!imgFailed && (
+              <img
+                src={portraitImg}
+                alt="Ramiz Ortiqov"
+                onError={() => setImgFailed(true)}
+                className="absolute inset-0 h-full w-full object-contain object-bottom"
+              />
+            )}
+          </div>
+        </div>
       </div>
     </section>
   )

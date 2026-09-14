@@ -1,7 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Montserrat', Helvetica, sans-serif;
+
+  --color-void: #000000;
+  --color-ink: #111111;
+  --color-panel: #dcdcdc;
+  --color-paper: #ffffff;
 }
 
 html {
@@ -10,9 +16,15 @@ html {
 
 body {
   margin: 0;
-  @apply bg-white text-zinc-700 dark:bg-zinc-950 dark:text-zinc-300;
+  @apply bg-paper text-ink font-sans antialiased;
+}
+
+@layer base {
+  a {
+    color: var(--color-ink);
+  }
 }
 
 ::selection {
-  @apply bg-violet-500/30;
+  @apply bg-ink text-paper;
 }

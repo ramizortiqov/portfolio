@@ -1,9 +1,15 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-zinc-200 py-8 dark:border-zinc-800">
-      <p className="text-center text-sm text-zinc-500 dark:text-zinc-500">
-        © {new Date().getFullYear()} Ramiz Ortiqov. Built with React, Vite &amp; Tailwind CSS.
-      </p>
+    <footer className="flex flex-wrap items-center justify-between gap-3.5 bg-void px-6 py-8 sm:px-10">
+      <span className="text-[11px] font-bold tracking-[2px] text-[#6b6b6b]">
+        © {new Date().getFullYear()} RAMIZ ORTIQOV
+      </span>
+      <a
+        href="#top"
+        className="text-[11px] font-bold tracking-[2px] text-paper no-underline transition-colors hover:text-[#8a8a8a]"
+      >
+        BACK TO TOP ↑
+      </a>
     </footer>
   )
 }
